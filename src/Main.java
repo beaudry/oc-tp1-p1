@@ -75,7 +75,10 @@ public class Main {
             }
 
             model.allDifferent(Arrays.stream(visibleFaces[noSolid]).map(face -> face.number).toArray(IntVar[]::new)).post();
-            model.allDifferent(Arrays.stream(visibleFacesTransposed[noSolid]).map(face -> face.color).toArray(IntVar[]::new)).post();
+        }
+
+        for (int noLine = 0; noLine < NB_FACES_DISPLAYED; noLine++) {
+            model.allDifferent(Arrays.stream(visibleFacesTransposed[noLine]).map(face -> face.color).toArray(IntVar[]::new)).post();
         }
 
         Solver solver = model.getSolver();
